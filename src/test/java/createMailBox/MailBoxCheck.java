@@ -1,7 +1,21 @@
 package createMailBox;
+import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static createMailBox.MainPage.*;
 
 public class MailBoxCheck {
+    public static void openSite(){
+        open("https://mail.ru");
+    }
+    public static void changeTab(){
+        String originalTab = getWebDriver().getWindowHandle();
+        for (String tab : getWebDriver().getWindowHandles()) {
+            if (!tab.equals(originalTab)) {
+                getWebDriver().switchTo().window(tab);
+                break;
+            }
+        }
+    }
     public static void createMailBox(){
         createMail.click();
     }
